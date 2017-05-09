@@ -22,8 +22,13 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 
-var routes = require('./controllers/burgers_controller.js');
+//var routes = require('./controllers/burgers_controller.js');
 
 app.use('/', routes);
 
-app.listen(port);
+// Include the {force: true} parameter if you need to update the models
+db.sequelize.sync().then(function() {
+  app.listen(port, function() {
+    console.log("My-Burger-Sequel is listening on PORT " + port);
+  });
+});

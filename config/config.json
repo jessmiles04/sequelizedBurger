@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": null,
+    "password": "D@zy2012",
     "database": "burgers_db",
-    "host": "127.0.0.1",
+    "host": "localHost",
     "dialect": "mysql"
   },
   "test": {
