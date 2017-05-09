@@ -1,3 +1,4 @@
+
 module.exports = function(sequelize, DataTypes) {
   // Define the Burger Sequelize model
   var Burger = sequelize.define("Burger", 
