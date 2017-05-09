@@ -1,28 +1,18 @@
-//Importing ORM
-var orm = require('../config/orm.js');
-
-//object
-
-var burger = {
-    //Select All
-    selectAll: function(cb){
-        orm.selectAll('burgers', function(res){
-            cb(res);
-        });
-    },
-    //Insert one
-    insertOne: function(cols, vals, cb) {
-        orm.insertOne('burgers', cols, vals, function(res){
-            cb(res);
-        });
-    },
-    //updateone
-
-    updateOne: function(objColVals, condition, cb) {
-        orm.updateOne('burgers', objColVals, condition, function(res){
-            cb(res);
-        });
+module.exports = function(sequelize, DataTypes) {
+  // Define the Burger Sequelize model
+  var Burger = sequelize.define("Burger", 
+    {
+      // Name is the actual burger
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      // whether or not the burger has been devoured
+      devoured: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     }
-}; //ends burger object
-//export
-module.exports = burger;
+
+  return Burger;
+};
