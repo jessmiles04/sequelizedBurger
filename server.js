@@ -3,16 +3,17 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var path = require("path");
-
-//for Heroku Deployment
-var port = 3000;
-
 var app = express();
 
+var port = process.env.port || 3000;
+
+
+
 app.use(express.static(process.cwd() + "/public"));
-
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(methodOverride('_method'));
 
@@ -23,13 +24,13 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 
-var routes = require('./controllers/burgers_controller.js');
-
-app.use('/', routes);
+//var routes = require('./controllers/burgers_controller.js');
+require('./controllers/burgers_controller.js')(app);
+//app.use('/', routes);
 
 var db = require(path.join(__dirname, '/models'))
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync({force:true}).then(function() {
   app.listen(port, function() {
     console.log("SequelizedBurger is listening on PORT " + port);
   });
