@@ -7,7 +7,7 @@
       <img src="./assets/img/background2.jpg" alt="tate" class="img-rounded">
     </div>
     <div class="col-md-7 col-xs-12">
-  <h1>Pop Tate's Burger Eating Contest</h1> </div>
+  <h1><strong>Riverdale Burger Eating Contest</strong></h1> </div>
   </div>
 </div>
 
@@ -15,10 +15,10 @@
     <div class="row">
       <div class="col-md-5 col-xs-12">
         <h4>Available Burgers</h4>
-        {{#each burgers}}
+        {{#each result}}
           {{#unless this.devoured}}
             <div>
-              <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+              <form action="/{{this.id}}?_method=PUT" method="POST">
                 <button type="submit" class='burgerCurrent'> {{this.burger_name}}</button>
               </form>
             </div>
@@ -38,7 +38,7 @@
 
         <div class="col-md-4 col-xs-12">
           <h4>Burgers Eaten</h4>
-        {{#each burgers}}
+        {{#each result}}
           {{#if this.devoured}}
             <div class='burgerEaten'>
               <div>

@@ -1,9 +1,10 @@
 body {
- 	background: #660000;
+ 	background-image: url("../img/fastfood.jpg");
  }
 
       .jumbotron {
-          text-align: center;
+      text-align: center;
+      font-family: 'Righteous', cursive;
 		  background: #000033;
 		  color: #FFFFFF;
      }

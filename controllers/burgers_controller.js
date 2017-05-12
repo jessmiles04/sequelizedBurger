@@ -1,10 +1,11 @@
-//var express = require("express");
+var express = require("express");
 var db = require("../models");
 
 module.exports = function (app) {
 
      app.get("/", function (req, res) {
         db.Burger.findAll({}).then(function(dbBurger) {
+            console.log(dbBurger);
             res.render("index", {result:dbBurger});
         });
     });
@@ -12,7 +13,7 @@ module.exports = function (app) {
     app.post("/add", function(req, res) {
 
         db.Burger.create({
-            name: req.body.burger_name,
+            burger_name: req.body.burger_name,
             devoured: false
         }).then(function(dbBurger) {
             res.redirect("/");
@@ -35,7 +36,6 @@ module.exports = function (app) {
             }
         }).then(function(dbBurger) {
             res.redirect("/");
-            console.log(req.params.id)
         })
     });
 

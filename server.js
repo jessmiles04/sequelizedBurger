@@ -30,7 +30,7 @@ require('./controllers/burgers_controller.js')(app);
 
 var db = require(path.join(__dirname, '/models'))
 
-db.sequelize.sync({force:true}).then(function() {
+db.sequelize.sync({force:false}).then(function() {
   app.listen(port, function() {
     console.log("SequelizedBurger is listening on PORT " + port);
   });
